@@ -33,6 +33,13 @@ def main():
         sys.exit("entry must be 1-140 characters, got %d" % len(text))
     if not line.endswith("rest my case.'"):
         sys.exit("entry must end with the punchline")
+    if "'I'm just trying to rest my case.'" not in line:
+        # The punchline must be the bed's own quoted words, not a
+        # paraphrase: a reworded punchline would blunt the pun.
+        sys.exit("entry must carry the punchline as the bed's quoted words")
+    if "  " in line or "\t" in line:
+        # Tight wording: no double spaces, no tabs.
+        sys.exit("entry must not contain double spaces or tabs")
     if "bed" not in line:
         # The pun only works if the bed is the one talking:
         # the setup must never silently go missing.
